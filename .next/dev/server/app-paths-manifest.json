@@ -1,5 +1,6 @@
 {
   "/admin/account-settings/page": "app/admin/account-settings/page.js",
+  "/admin/analytics/page": "app/admin/analytics/page.js",
   "/admin/community/page": "app/admin/community/page.js",
   "/admin/events/page": "app/admin/events/page.js",
   "/admin/matchmaking/page": "app/admin/matchmaking/page.js",
