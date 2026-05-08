@@ -25,13 +25,19 @@ export default function CreateAnnouncementModal({ isOpen, onClose, onSuccess }: 
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     
+    const title = formData.get('title') as string || '';
+    const category = formData.get('category') as string || 'Event';
+    const description = formData.get('description') as string || '';
+    const priority = formData.get('priority') as string || 'Medium';
+    const publishDate = formData.get('publishDate') as string || '';
+
     const newAnnouncement = {
       id: Math.random().toString(36).substr(2, 9),
-      title: formData.get('title'),
-      category: formData.get('category'),
-      description: formData.get('description'),
-      priority: formData.get('priority'),
-      publishDate: formData.get('publishDate'),
+      title,
+      category,
+      description,
+      priority,
+      publishDate,
       visibility,
       time: 'Just now',
       username: 'System Admin',

@@ -24,15 +24,22 @@ export default function CreateTournamentModal({ isOpen, onClose, onSuccess }: Cr
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     
+    const name = formData.get('name') as string || '';
+    const game = formData.get('game') as string || '';
+    const type = formData.get('type') as string || 'Single Elimination';
+    const prize = formData.get('prize') as string || '₱0';
+    const startDate = formData.get('startDate') as string || '';
+    const maxTeams = Number(formData.get('maxTeams')) || 16;
+
     const newTournament = {
       id: Math.random().toString(36).substr(2, 9),
-      name: formData.get('name'),
-      game: formData.get('game'),
-      type: formData.get('type'),
+      name,
+      game,
+      type,
       teams: 0,
-      maxTeams: Number(formData.get('maxTeams')),
-      prize: formData.get('prize'),
-      startDate: formData.get('startDate'),
+      maxTeams,
+      prize,
+      startDate,
       status: 'upcoming',
       banner: bannerPreview || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=400',
       progress: 0,

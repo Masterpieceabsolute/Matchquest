@@ -31,12 +31,16 @@ export default function CreateNotificationModal({ isOpen, onClose, onSuccess }: 
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     
+    const title = formData.get('title') as string || '';
+    const message = formData.get('message') as string || '';
+    const type = formData.get('type') as string || 'info';
+
     const newNotif = {
       id: Math.random().toString(36).substr(2, 9),
-      title: formData.get('title'),
-      message: formData.get('message'),
-      type: formData.get('type'),
-      category: formData.get('type').toString().charAt(0).toUpperCase() + formData.get('type').toString().slice(1),
+      title,
+      message,
+      type,
+      category: type.charAt(0).toUpperCase() + type.slice(1),
       timestamp: 'Just now',
       reach: Math.floor(Math.random() * 5000),
       methods: methods,
