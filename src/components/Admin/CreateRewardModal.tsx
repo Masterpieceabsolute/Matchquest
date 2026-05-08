@@ -32,11 +32,14 @@ export default function CreateRewardModal({ isOpen, onClose, onSuccess }: Create
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     
+    const description = formData.get('description') as string || '';
+    const xp = Number(formData.get('xp')) || 500;
+
     const newReward = {
       id: Math.random().toString(36).substr(2, 9),
       name: name,
-      description: formData.get('description'),
-      xp: Number(formData.get('xp')),
+      description,
+      xp,
       rarity: rarity,
       type: rewardTypes[0] || 'Badge',
       icon: <Trophy size={20} />,

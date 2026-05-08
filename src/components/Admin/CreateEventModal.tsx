@@ -23,17 +23,25 @@ export default function CreateEventModal({ isOpen, onClose, onSuccess }: CreateE
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     
+    const title = formData.get('title') as string || '';
+    const date = formData.get('date') as string || '';
+    const startTime = formData.get('startTime') as string || '';
+    const venue = formData.get('venue') as string || '';
+    const organizer = formData.get('organizer') as string || '';
+    const category = formData.get('category') as string || 'Tournament';
+    const maxParticipants = Number(formData.get('maxParticipants')) || 100;
+
     const newEvent = {
       id: Math.random().toString(36).substr(2, 9),
-      title: formData.get('title'),
-      date: formData.get('date'),
-      time: formData.get('startTime'),
-      venue: formData.get('venue'),
+      title,
+      date,
+      time: startTime,
+      venue,
       participants: 0,
-      maxParticipants: Number(formData.get('maxParticipants')),
-      organizer: formData.get('organizer'),
+      maxParticipants,
+      organizer,
       status: 'Open',
-      category: formData.get('category'),
+      category,
       banner: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=400'
     };
 

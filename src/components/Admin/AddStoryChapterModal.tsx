@@ -34,13 +34,17 @@ export default function AddStoryChapterModal({ isOpen, onClose, onSuccess }: Add
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
+    const title = formData.get('title') as string || '';
+    const description = formData.get('description') as string || '';
+    const difficulty = formData.get('difficulty') as string || 'Medium';
+
     const newChapter = {
       id: Math.random().toString(36).substr(2, 9),
-      title: formData.get('title'),
-      description: formData.get('description'),
+      title,
+      description,
       choices: choices.length,
       endings: 1,
-      difficulty: formData.get('difficulty'),
+      difficulty,
       completion: 0
     };
     onSuccess(newChapter);
